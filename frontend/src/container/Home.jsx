@@ -28,7 +28,8 @@ const Home = () => {
   })
 
   return (
-    <div className="flex bg-gray-50 md:flex-row flex-col h-screen transition-height duration-75 ease-out">
+    // <div className="flex bg-gray-50 md:flex-row flex-col h-screen transition-height duration-75 ease-out">
+    <div className="flex bg-primary md:flex-row flex-col h-screen transition-height duration-75 ease-out">
       <div className="hidden md:flex h-screen flex-initial">
         <Sidebar user={user && user} />
       </div>
@@ -37,7 +38,7 @@ const Home = () => {
         <div className="p-2 w-full flex flex-row justify-between items-center shadow-md">
           <HiMenu
             fontSize={40}
-            className="cursor-pointer"
+            className="cursor-pointer text-secondary"
             onClick={() => setToggleSidebar(true)}
           />
           <Link to="/">Logo</Link>
@@ -54,7 +55,7 @@ const Home = () => {
             <div className="absolute w-full flex justify-end items-center p-2">
               <AiFillCloseCircle
                 fontSize={30}
-                className="cursor-pointer"
+                className="cursor-pointer text-secondary"
                 onClick={() => setToggleSidebar(false)}
               />
             </div>

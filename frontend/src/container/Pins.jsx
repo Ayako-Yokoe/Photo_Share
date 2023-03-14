@@ -5,15 +5,17 @@ import { CreatePin, Feed, Navbar, PinDetail, Search } from "../components"
 const Pins = ({ user }) => {
   const [searchTerm, setSearchTerm] = useState("")
   return (
-    <div className="px-2 md:px-5">
-      <div className="bg-gray-50">
+    // <div className="px-2 md:px-5">
+    <div>
+      {/* <div className="bg-gray-50"> */}
+      <div className="bg-secondary">
         <Navbar
           searchTerm={searchTerm}
           setSearchTerm={setSearchTerm}
           user={user && user}
         />
       </div>
-      <div className="h-full">
+      <div className="h-full px-2 md:px-5">
         <Routes>
           <Route path="/" element={<Feed />} />
           <Route path="/category/:categoryId" element={<Feed />} />

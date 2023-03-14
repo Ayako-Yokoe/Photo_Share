@@ -8,14 +8,14 @@ const Spinner = ({ message }) => {
         height="80"
         width="80"
         radius="9"
-        color="#4fa94d"
+        color="#f600f2"
         ariaLabel="three-dots-loading"
         wrapperStyle={{}}
         wrapperClassName=""
         visible={true}
         className="m-5"
       />
-      <p className="text-lg tect-center px-2">{message}</p>
+      <p className="text-lg tect-center px-2 text-primary">{message}</p>
     </div>
   )
 }
