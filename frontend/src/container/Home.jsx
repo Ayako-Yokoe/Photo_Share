@@ -41,7 +41,12 @@ const Home = () => {
             className="cursor-pointer text-secondary"
             onClick={() => setToggleSidebar(true)}
           />
-          <Link to="/">Logo</Link>
+          <Link
+            to="/"
+            style={{ fontFamily: "Lobster, cursive", fontSize: "28px" }}
+          >
+            Photo_Share
+          </Link>
           <Link to={`user-profile/${user?._id}`}>
             <img
               src={user?.image}

@@ -27,9 +27,10 @@ const Sidebar = ({ user, closeToggle }) => {
           to="/"
           // className="flex px-5 gap-2 my-6 pt-1 w-190 items-center"
           className="flex px-5 gap-2 my-6 pt-1 w-190 items-center text-fuchsia-600"
+          style={{ fontFamily: "Lobster, cursive", fontSize: "28px" }}
           onClick={handleCloseSidebar}
         >
-          Logo
+          Photo_Share
         </Link>
         <div className="flex flex-col gap-5">
           <NavLink
@@ -55,7 +56,7 @@ const Sidebar = ({ user, closeToggle }) => {
           <h3 className="mt-2 px-5 text-primary 2xl:text-xl">
             Discover Categories
           </h3>
-          {categories.slice(0, categories.length - 1).map((category) => (
+          {categories.slice(0, categories.length).map((category) => (
             <NavLink
               to={`/category/${category.name}`}
               className={({ isActive }) =>

@@ -69,15 +69,15 @@ const PinDetail = ({ user }) => {
           className="flex xl:flex-row flex-col m-auto bg-white"
           style={{ maxWidth: "1500px", borderRadius: "32px" }}
         >
-          <div className="flex justify-center items-center md:items-start flex-initial">
+          <div className="flex justify-center items-center md:items-start flex-initial m-5">
             <img
-              className="rounded-t-3xl rounded-b-lg"
+              className="rounded-lg"
               src={pinDetail?.image && urlFor(pinDetail?.image).url()}
               alt="user-post"
             />
           </div>
           <div className="w-full p-5 flex-1 xl:min-w-620">
-            <div className="flex items-center justify-between">
+            <div className="flex items-center">
               <div className="flex gap-2 items-center">
                 <a
                   href={`${pinDetail.image.asset.url}?dl=`}
@@ -88,7 +88,7 @@ const PinDetail = ({ user }) => {
                 </a>
               </div>
               <a href={pinDetail.destination} target="_blank" rel="noreferrer">
-                {pinDetail.destination?.slice(8)}
+                {pinDetail.destination?.slice(0, 60)}
               </a>
             </div>
             <div>

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react"
 import axios from "axios"
 // import GoogleLogin from "react-google-login"
-import { GoogleOAuthProvider } from "@react-oauth/google"
 
 import { useNavigate } from "react-router-dom"
 // import { FcGoogle } from "react-icons/fc"
@@ -77,14 +76,9 @@ const Login = () => {
             <span className="text-white text-2xl">PHOTO_SHARE</span>
           </div>
           <div className="shadow-2xl">
-            {/* <GoogleOAuthProvider
-              clientId={`${process.env.REACT_APP_GOOGLE_API_TOKEN}`}
-            > */}
             <button
               type="button"
               className="bg-mainColor flex justify-center items-center rounded-lg p-3 outline-none cursor-pointer"
-              // onClick={renderProps.onClick}
-              // disabled={renderProps.disabled}
               onClick={() => responseGoogle()}
             >
               Sign in with Google
@@ -96,7 +90,6 @@ const Login = () => {
                   }}
                 /> */}
             </button>
-            {/* </GoogleOAuthProvider> */}
           </div>
         </div>
       </div>

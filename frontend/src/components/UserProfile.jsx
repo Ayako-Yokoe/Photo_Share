@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { AiOutlineLogout } from "react-icons/ai"
 import { useParams, useNavigate } from "react-router-dom"
-// import { GoogleLogout } from "react-google-login"
+//import { GoogleLogout } from "react-google-login"
 import { googleLogout } from "@react-oauth/google"
 
 import {
@@ -51,11 +51,12 @@ const UserProfile = () => {
     }
   }, [text, userId])
 
-  // const logout = () => {
-  //   localStorage.clear();
+  const logout = () => {
+    localStorage.clear()
+    googleLogout()
 
-  //   navigate('/login');
-  // };
+    navigate("/login")
+  }
 
   if (!user) {
     return <Spinner message="Loading profile..." />
@@ -81,11 +82,16 @@ const UserProfile = () => {
             {user.userName}
           </h1>
           <div className="absolute top-0 z-1 right-0 p-2">
-            {/* {userId === User.id && (
-              <button type="button" onClick={() => googleLogout()}>
+            {userId === User.id && (
+              <button
+                className="text-white"
+                type="button"
+                // onClick={() => googleLogout()}
+                onClick={() => logout()}
+              >
                 Logout
               </button>
-            )} */}
+            )}
           </div>
         </div>
         <div className="text-center mb-7">
