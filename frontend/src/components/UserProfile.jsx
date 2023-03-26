@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { AiOutlineLogout } from "react-icons/ai"
 import { useParams, useNavigate } from "react-router-dom"
-//import { GoogleLogout } from "react-google-login"
-import { googleLogout } from "@react-oauth/google"
 
 import {
   userCreatedPinsQuery,
@@ -53,7 +51,7 @@ const UserProfile = () => {
 
   const logout = () => {
     localStorage.clear()
-    googleLogout()
+    setUser(null)
 
     navigate("/login")
   }
@@ -82,14 +80,13 @@ const UserProfile = () => {
             {user.userName}
           </h1>
           <div className="absolute top-0 z-1 right-0 p-2">
-            {userId === User.id && (
+            {userId === User.sub && (
               <button
-                className="text-white"
+                className="text-white m-5"
                 type="button"
-                // onClick={() => googleLogout()}
                 onClick={() => logout()}
               >
-                Logout
+                <AiOutlineLogout fontSize={30} />
               </button>
             )}
           </div>

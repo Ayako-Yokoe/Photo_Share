@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import axios from "axios"
+// import axios from "axios"
 // import GoogleLogin from "react-google-login"
 
 import { useNavigate } from "react-router-dom"
@@ -10,47 +10,84 @@ import { client } from "../client"
 
 import { googleLogout, useGoogleLogin } from "@react-oauth/google"
 
+import jwt_decode from "jwt-decode"
+
 const Login = () => {
-  const [user, setUser] = useState([])
+  //const [user, setUser] = useState([])
+  const [user, setUser] = useState({})
   // const [profile, setProfile] = useState([])
   const navigate = useNavigate()
 
-  const responseGoogle = useGoogleLogin({
-    onSuccess: (codeResponse) => setUser(codeResponse),
-    onError: (error) => console.log("Login Failed:", error),
-  })
+  function handleCallbackResponse(response) {
+    console.log(response.credential)
+    const userObject = jwt_decode(response.credential)
+    console.log(userObject)
+    setUser(userObject)
+
+    localStorage.setItem("user", JSON.stringify(userObject))
+    const { name, sub, picture } = userObject
+    console.log("name, id, picture", name, sub, picture)
+    const doc = {
+      _id: sub,
+      _type: "user",
+      userName: name,
+      image: picture,
+    }
+
+    client.createIfNotExists(doc).then(() => {
+      navigate("/", { replace: true })
+    })
+  }
 
   useEffect(() => {
-    if (user) {
-      axios
-        .get(
-          `https://www.googleapis.com/oauth2/v1/userinfo?access_token=${user.access_token}`,
-          {
-            headers: {
-              Authorization: `Bearer ${user.access_token}`,
-              Accept: "application/json",
-            },
-          }
-        )
-        .then((res) => {
-          // setProfile(res.data)
-          console.log("data", res.data)
-          localStorage.setItem("user", JSON.stringify(res.data))
-          const { name, id, picture } = res.data
-          console.log("name, id, picture", name, id, picture)
-          const doc = {
-            _id: id,
-            _type: "user",
-            userName: name,
-            image: picture,
-          }
-          client.createIfNotExists(doc).then(() => {
-            navigate("/", { replace: true })
-          })
-        })
-        .catch((err) => console.log(err))
-    }
-  }, [user])
+    /* global google */
+    google.accounts.id.initialize({
+      client_id: process.env.REACT_APP_GOOGLE_API_TOKEN,
+      callback: handleCallbackResponse,
+    })
+
+    google.accounts.id.renderButton(document.getElementById("signInDiv"), {
+      theme: "outline",
+      size: "large",
+    })
+  }, [])
+
+  // const responseGoogle = useGoogleLogin({
+  //   onSuccess: (codeResponse) => setUser(codeResponse),
+  //   onError: (error) => console.log("Login Failed:", error),
+  // })
+
+  // useEffect(() => {
+  //   if (user) {
+  //     axios
+  //       .get(
+  //         `https://www.googleapis.com/oauth2/v1/userinfo?access_token=${user.access_token}`,
+  //         {
+  //           headers: {
+  //             Authorization: `Bearer ${user.access_token}`,
+  //             Accept: "application/json",
+  //           },
+  //         }
+  //       )
+  //       .then((res) => {
+  //         // setProfile(res.data)
+  //         console.log("data", res.data)
+  //         localStorage.setItem("user", JSON.stringify(res.data))
+  //         const { name, id, picture } = res.data
+  //         console.log("name, id, picture", name, id, picture)
+  //         const doc = {
+  //           _id: id,
+  //           _type: "user",
+  //           userName: name,
+  //           image: picture,
+  //         }
+  //         client.createIfNotExists(doc).then(() => {
+  //           navigate("/", { replace: true })
+  //         })
+  //       })
+  //       .catch((err) => console.log(err))
+  //   }
+  // }, [user])
 
   // const responseGoogle = (response) => {
 
@@ -75,22 +112,24 @@ const Login = () => {
           <div className="p-5">
             <span className="text-white text-2xl">PHOTO_SHARE</span>
           </div>
-          <div className="shadow-2xl">
+          <div id="signInDiv"></div>
+
+          {/* <div className="shadow-2xl">
             <button
               type="button"
               className="bg-mainColor flex justify-center items-center rounded-lg p-3 outline-none cursor-pointer"
               onClick={() => responseGoogle()}
             >
-              Sign in with Google
-              {/* <GoogleLogin
+              Sign in with Google */}
+          {/* <GoogleLogin
                   className="mr-4"
                   onSuccess={responseGoogle}
                   onError={() => {
                     console.log("Loging Failed")
                   }}
                 /> */}
-            </button>
-          </div>
+          {/* </button>
+          </div> */}
         </div>
       </div>
     </div>
