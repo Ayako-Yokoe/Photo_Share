@@ -40,16 +40,10 @@ module.exports = {
         620: "620px",
       },
       textColor: {
-        // lightGray: "#F1EFEE",
-        // primary: "#FAFAFA",
-        // secColor: "#efefef",
-        // navColor: "#BEBEBE",
         primary: "#E4E6EB",
         secondary: "#B0B3B8",
       },
       backgroundColor: {
-        // mainColor: "#FBF8F9",
-        // secondaryColor: "#F0F0F0",
         blackOverlay: "rgba(0, 0 ,0 ,0.7)",
         primary: "#18191A",
         secondary: "#242526",

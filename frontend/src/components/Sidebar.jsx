@@ -34,13 +34,6 @@ const Sidebar = ({ user, closeToggle }) => {
             }
             onClick={handleCloseSidebar}
           >
-            {/* 
-          <IconContext.Provider value={{ color: "blue", className: "global-class-name" }}>
-            <div>
-              <FaFolder />
-            </div>
-          </IconContext.Provider>; */}
-
             <IconContext.Provider value={{ color: "#E4E6EB" }}>
               <RiHomeFill />
               <span className="text-primary">Home</span>
