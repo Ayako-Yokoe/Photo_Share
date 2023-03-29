@@ -5,12 +5,10 @@ import { client } from "../client"
 import jwt_decode from "jwt-decode"
 
 const Login = () => {
-  const [user, setUser] = useState({})
   const navigate = useNavigate()
 
   function handleCallbackResponse(response) {
     const userObject = jwt_decode(response.credential)
-    setUser(userObject)
 
     localStorage.setItem("user", JSON.stringify(userObject))
     const { name, sub, picture } = userObject
@@ -37,12 +35,12 @@ const Login = () => {
       theme: "outline",
       size: "large",
     })
-  }, [])
+  }, [handleCallbackResponse])
 
   return (
     <div className="flex justify-start items-center flex-col h-screen">
       <div className="relative w-full h-full">
-        <img src={smartphone} className="w-full h-full object-cover" />
+        <img src={smartphone} alt="" className="w-full h-full object-cover" />
         <div className="absolute flex flex-col justify-center items-center top-0 right-0 bottom-0 left-0 bg-blackOverlay">
           <div className="p-5">
             <span className="text-white text-2xl">PHOTO_SHARE</span>
