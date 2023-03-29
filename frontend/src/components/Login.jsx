@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useCallback, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import smartphone from "../assets/smartphone.jpg"
 import { client } from "../client"
@@ -7,22 +7,25 @@ import jwt_decode from "jwt-decode"
 const Login = () => {
   const navigate = useNavigate()
 
-  function handleCallbackResponse(response) {
-    const userObject = jwt_decode(response.credential)
+  const handleCallbackResponse = useCallback(
+    (response) => {
+      const userObject = jwt_decode(response.credential)
 
-    localStorage.setItem("user", JSON.stringify(userObject))
-    const { name, sub, picture } = userObject
-    const doc = {
-      _id: sub,
-      _type: "user",
-      userName: name,
-      image: picture,
-    }
+      localStorage.setItem("user", JSON.stringify(userObject))
+      const { name, sub, picture } = userObject
+      const doc = {
+        _id: sub,
+        _type: "user",
+        userName: name,
+        image: picture,
+      }
 
-    client.createIfNotExists(doc).then(() => {
-      navigate("/", { replace: true })
-    })
-  }
+      client.createIfNotExists(doc).then(() => {
+        navigate("/", { replace: true })
+      })
+    },
+    [navigate]
+  )
 
   useEffect(() => {
     /* global google */
