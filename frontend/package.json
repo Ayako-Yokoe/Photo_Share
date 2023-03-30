@@ -2,6 +2,7 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://photo-share-ay.netlify.app/frontend",
   "dependencies": {
     "@react-oauth/google": "^0.7.1",
     "@sanity/client": "^5.2.2",
