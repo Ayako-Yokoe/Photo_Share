@@ -79,14 +79,17 @@ const UserProfile = () => {
           <h1 className="font-bold text-3xl text-center text-primary mt-3">
             {user.userName}
           </h1>
-          <div className="absolute top-0 z-1 right-0 p-2">
+          <div className="absolute top-0 z-1 right-0 p-2 m-5">
             {userId === User.sub && (
               <button
-                className="text-white m-5"
+                className="text-white"
                 type="button"
                 onClick={() => logout()}
               >
-                <AiOutlineLogout fontSize={30} />
+                <div className="flex justify-center items-center ">
+                  <div className="tracking-wider text-white mr-2">Log Out</div>
+                  <AiOutlineLogout fontSize={30} />
+                </div>
               </button>
             )}
           </div>
