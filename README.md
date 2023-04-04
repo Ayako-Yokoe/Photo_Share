@@ -14,7 +14,7 @@ Users can upload photos, save their favorite photos, and comment on photos.
 
 ## Front end - client
 
-![screen-gif](./README-Photo_Share-gif)
+![screen-gif](./README-photo_share.gif)
 
 **Log in / Log out**<br/>
 Using React with Google OAuth allows users to log in and log out of the application with just one click.<br/>
