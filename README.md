@@ -12,7 +12,7 @@ Users can upload photos, save their favorite photos, and comment on photos.
 - Tailwind CSS
 - Google OAuth
 
-## Front end - client
+## Page Overview
 
 ![screen-gif](./README-photo_share.gif)
 
